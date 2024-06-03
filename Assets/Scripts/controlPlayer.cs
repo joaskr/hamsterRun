@@ -8,10 +8,14 @@ public class controlPlayer : MonoBehaviour
     private CharacterController controller;
     private Vector3 direction;
     public float forwardSpeed;
+    private int slideSmooth = 60;
 
     // There are 3 lanes left (0), middle (1) and right (2)
     private int actualLane = 1;
     public float distanceBetweenLanes = 4;
+
+    public float jumpForce;
+    public float gravity = -20;
 
     void Start()
     {
@@ -22,7 +26,19 @@ public class controlPlayer : MonoBehaviour
     void Update()
     {
         direction.z = forwardSpeed;
-        if(Input.GetKeyDown(KeyCode.RightArrow) & actualLane < 2)
+        if(controller.isGrounded)
+        {
+            //direction.y = -1;
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                Jump();
+            }
+        } else
+        {
+            direction.y += gravity * Time.deltaTime;
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow) & actualLane < 2)
         {
           actualLane++;
         }
@@ -41,11 +57,16 @@ public class controlPlayer : MonoBehaviour
             targetPosition += Vector3.right * distanceBetweenLanes;
         }
 
-        transform.position = Vector3.Lerp(transform.position, targetPosition, 60 * Time.fixedDeltaTime);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, slideSmooth * Time.fixedDeltaTime);
     }
 
     private void FixedUpdate()
     {
         controller.Move(direction * Time.fixedDeltaTime);
+    }
+
+    private void Jump()
+    {
+        direction.y = jumpForce;
     }
 }
