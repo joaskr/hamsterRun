@@ -133,6 +133,8 @@ GameObject:
   m_Component:
   - component: {fileID: 192816572}
   - component: {fileID: 192816571}
+  - component: {fileID: 192816573}
+  - component: {fileID: 192816574}
   m_Layer: 0
   m_Name: TileManager
   m_TagString: Untagged
@@ -159,6 +161,7 @@ MonoBehaviour:
   - {fileID: 8634754651587903649, guid: 66d75db6a470c7645bdbcd5000b36423, type: 3}
   - {fileID: 8016343437682667073, guid: 2cb222dc79c834b4d8c14f36b7b409fd, type: 3}
   - {fileID: 3783883259625848185, guid: 3b76a3679c1747b4da2474381f4f4d59, type: 3}
+  coinPrefab: {fileID: 2374814952900089767, guid: 601e47c9048201747bd9471a77b968aa, type: 3}
   zSpawn: 0
   tileLength: 15.43
   numberOfTiles: 5
@@ -172,12 +175,57 @@ Transform:
   m_GameObject: {fileID: 192816570}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.6444726, y: -1.2981383, z: 3.6246905}
+  m_LocalPosition: {x: 1915, y: -1.2981383, z: 929}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &192816573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192816570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc5145e333ea8041bfa6002116a59d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilePrefabs:
+  - {fileID: 6386839817786024350, guid: 6748c68f40f0e9f44a4ec0c1ae8c7137, type: 3}
+  - {fileID: 5498698816275664402, guid: 26bbcaa9cc9fc214d98d6d2f19be63f4, type: 3}
+  - {fileID: 8802410682797464983, guid: 29c619b5fa669004fb366b5b11becb31, type: 3}
+  - {fileID: 8634754651587903649, guid: 66d75db6a470c7645bdbcd5000b36423, type: 3}
+  - {fileID: 8016343437682667073, guid: 2cb222dc79c834b4d8c14f36b7b409fd, type: 3}
+  - {fileID: 3783883259625848185, guid: 3b76a3679c1747b4da2474381f4f4d59, type: 3}
+  coinPrefab: {fileID: 2374814952900089767, guid: 601e47c9048201747bd9471a77b968aa, type: 3}
+  zSpawn: 0
+  tileLength: 15.43
+  numberOfTiles: 5
+  playerTransform: {fileID: 1082901781}
+--- !u!65 &192816574
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192816570}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &246580725
 GameObject:
   m_ObjectHideFlags: 0
@@ -1055,7 +1103,7 @@ GameObject:
   - component: {fileID: 1082901782}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1188,9 +1236,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forwardSpeed: 4
+  maxSpeed: 0
   distanceBetweenLanes: 2.6
   jumpForce: 6
   gravity: -10
+  crawlScale: {x: 0.5, y: 0.2, z: 0.5}
+  normalScale: {x: 0.5, y: 0.5, z: 0.5}
   animator: {fileID: 359156069}
 --- !u!1001 &1165496780
 PrefabInstance:

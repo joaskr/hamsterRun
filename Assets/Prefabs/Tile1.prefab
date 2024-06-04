@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6771915718260893523}
+  - component: {fileID: 2373322777588617708}
   m_Layer: 0
   m_Name: Tile1
   m_TagString: Untagged
@@ -32,6 +33,27 @@ Transform:
   - {fileID: 7981016816147758391}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2373322777588617708
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6386839817786024350}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 7.819194, y: 0, z: 16.338318}
+  m_Center: {x: -0.47410476, y: -0.49999985, z: -1.1654396}
 --- !u!1001 &7586592844741778140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42,7 +64,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 5daaad155ac94e84883ccecfc07a3c2a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5daaad155ac94e84883ccecfc07a3c2a, type: 3}
       propertyPath: m_LocalPosition.y
