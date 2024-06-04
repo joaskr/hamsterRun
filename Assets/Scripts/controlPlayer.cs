@@ -57,6 +57,7 @@ public class controlPlayer : MonoBehaviour
         }
 
         transform.position = Vector3.Lerp(transform.position, targetPosition, slideSmooth * Time.fixedDeltaTime);
+        controller.center = controller.center;
     }
 
     private void FixedUpdate()
