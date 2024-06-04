@@ -121,6 +121,7 @@ public class controlPlayer : MonoBehaviour
         if (hit.transform.tag == "Obstacle")
         {
             managePlayer.gameOver = true;
+            FindObjectOfType<manageAudio>().PlaySound("gameOver");
         }
     }
 }

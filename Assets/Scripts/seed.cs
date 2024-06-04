@@ -20,6 +20,7 @@ public class seed : MonoBehaviour
     {
         if(other.tag == "Player") 
         {
+            FindObjectOfType<manageAudio>().PlaySound("seed");
             managePlayer.numberOfCoins++;
             Debug.Log("Coins:" + managePlayer.numberOfCoins);
             Destroy(gameObject);
