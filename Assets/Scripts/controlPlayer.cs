@@ -8,6 +8,7 @@ public class controlPlayer : MonoBehaviour
     private CharacterController controller;
     private Vector3 direction;
     public float forwardSpeed;
+    public float maxSpeed;
     private int slideSmooth = 60;
 
     // There are 3 lanes left (0), middle (1) and right (2)
@@ -17,6 +18,14 @@ public class controlPlayer : MonoBehaviour
     public float jumpForce;
     public float gravity = -20;
 
+    public Vector3 crawlScale = new Vector3(0.5f, 0.2f, 0.5f); 
+    public Vector3 normalScale = new Vector3(0.5f, 0.5f, 0.5f);
+    private bool isCrawling = false;
+    private float crawlTimer = 0.0f;
+    private float crawlDuration = 0.8f;
+
+    public Animator animator;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -25,17 +34,35 @@ public class controlPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!managePlayer.isGameStarted)
+        {
+            return;
+        }
+        if(forwardSpeed < maxSpeed)
+        {
+            forwardSpeed += 0.1f * Time.deltaTime;
+        }
         direction.z = forwardSpeed;
-        if(controller.isGrounded)
+        
+        if (controller.isGrounded)
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 Jump();
             }
+            else if (Input.GetKeyDown(KeyCode.DownArrow) && !isCrawling)
+            {
+                Crawl();
+            } else if (isCrawling)
+            {
+                crawlTimer += Time.deltaTime;
+                if (crawlTimer >= crawlDuration) {
+                    Uncrawl();
+                }
+            }
         } else
         {
-            direction.y += gravity * Time.deltaTime;
-        }
+            direction.y += gravity * Time.deltaTime;        }
 
         if (Input.GetKeyDown(KeyCode.RightArrow) & actualLane < 2)
         {
@@ -62,12 +89,31 @@ public class controlPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!managePlayer.isGameStarted)
+        {
+            return;
+        }
         controller.Move(direction * Time.fixedDeltaTime);
     }
 
     private void Jump()
     {
         direction.y = jumpForce;
+    }
+
+    private void Crawl()
+    {
+        isCrawling = true;
+        crawlTimer = 0.0f;
+        transform.localScale = crawlScale;
+        transform.position = new Vector3(transform.position.x, transform.position.y - 0.2f, transform.position.z);
+    }
+
+    private void Uncrawl()
+    {
+        isCrawling = false;
+        transform.localScale = normalScale;
+        transform.position = new Vector3(transform.position.x, transform.position.y + 0.2f, transform.position.z);
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)

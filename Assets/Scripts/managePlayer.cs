@@ -6,10 +6,14 @@ public class managePlayer : MonoBehaviour
 {
     public static bool gameOver;
     public GameObject gameOverPanel;
+    public GameObject startGamePanel;
+
+    public static bool isGameStarted;
     // Start is called before the first frame update
     void Start()
     {
         gameOver = false;
+        isGameStarted = false;
         Time.timeScale = 1;
 
     }
@@ -21,6 +25,11 @@ public class managePlayer : MonoBehaviour
         {
             Time.timeScale = 0;
             gameOverPanel.SetActive(true);
+            isGameStarted = false;
+        }
+        if(isGameStarted)
+        {
+            startGamePanel.SetActive(false);
         }
     }
 }
