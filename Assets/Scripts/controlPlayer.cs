@@ -28,7 +28,6 @@ public class controlPlayer : MonoBehaviour
         direction.z = forwardSpeed;
         if(controller.isGrounded)
         {
-            //direction.y = -1;
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 Jump();
