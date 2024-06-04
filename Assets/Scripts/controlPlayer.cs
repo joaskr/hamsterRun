@@ -69,4 +69,12 @@ public class controlPlayer : MonoBehaviour
     {
         direction.y = jumpForce;
     }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.transform.tag == "Obstacle")
+        {
+            managePlayer.gameOver = true;
+        }
+    }
 }
