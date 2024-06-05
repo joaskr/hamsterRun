@@ -29,7 +29,7 @@ public class ManageTiles : MonoBehaviour
 
     void Update()
     {
-        if (playerTransform.position.z - 20 > zSpawn - (numberOfTiles * tileLength))
+        if (playerTransform.position.z - 25 > zSpawn - (numberOfTiles * tileLength))
         {
             SpawnTile(Random.Range(0, tilePrefabs.Length));
             DeleteTile();
